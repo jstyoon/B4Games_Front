@@ -29,14 +29,19 @@
                 <li class="nav-item dropdown">
 
                     <div class="p-2">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false" style="color: aliceblue;">
-                            로그인
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="singin.html">Login</a></li>
-                            <li><a class="dropdown-item" href="singup.html">Signup</a></li>
-                        </ul>
+                        <!-- onclick="handleLogout()" -->
+                        <div id="userAPI" style="color: aliceblue;">
+                            <a class="nav-link dropdown-toggle" id="dropdown_toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false" style="color: aliceblue;">
+                                로그인
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" id="dropdown_item_3" onclick="handleLogout()">Logout</a>
+                                </li>
+                                <li><a class="dropdown-item" id="dropdown_item_1" href="signin.html">Login</a></li>
+                                <li><a class="dropdown-item" id="dropdown_item_2" href="signup.html">Signup</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </li>
             </div>
@@ -97,6 +102,6 @@
     </div>
 
 </body>
-<script src="/js/API.js"></script>
+<script src="/js/home.js"></script>
 
 </html>
