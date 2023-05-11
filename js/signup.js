@@ -16,7 +16,7 @@ async function handleSignup() {
         },
         method: 'POST',
         body: JSON.stringify({
-            "email": email,
+            "nickname": email,
             "password": password,
         })
     })

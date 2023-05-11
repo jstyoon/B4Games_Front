@@ -20,7 +20,7 @@
 <body style="background-color: black;">
 </body>
 <div class="mx-auto p-2"
-    style="width: 30%;color: white; margin-top: 5%; background-color:#252323ee; height: 750px; border: 30px;">
+    style="width: 30%; align-items: center; color: white; margin-top: 5%; background-color:#252323ee; height: 750px; border: 30px; justify-content: center;">
     <div style="text-align: center;">
         <a href="home.html">
             <img src="https://images-eds-ssl.xboxlive.com/image?url=Q_rwcVSTCIytJ0KOzcjWTYl.n38D8jlKWXJx7NRJmQKBAEDCgtTAQ0JS02UoaiwRj.VcHXTwP3Gcq532nGGgSA8qyM.nT53pbAyjew8mzCXzC0mTj86VJ_q_ZhLoMNJuhb7Yws.q4QMuASMMTASiIA--&format=source"
@@ -34,12 +34,26 @@
                 <input type="text" id="nickname" class="form-control" placeholder="아이디를 입력해 주세요." required>
             </div>
             <div class="mb-3">
+                <input type="text" id="email" class="form-control" placeholder="example@email.com" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" id="username" class="form-control" placeholder="이름을 입력해 주세요." required>
+            </div>
+            <div class="mb-3">
                 <input type="text" id="password" class="form-control" placeholder="비밀번호를 입력해 주세요." required>
             </div>
-            <button type="submit" style="width: 100%; margin-top: 13%;" class="btn btn-primary">로그인</button>
+            <div class="mb-3">
+                <label for="disabledSelect" class="form-label">가입 유형을 선택하세요.</label>
+                <select id="is_seller" class="form-select">
+                    <option>일반 회원</option>
+                    <option>판매 회원</option>
+                </select>
+
+            </div>
+            <button type="submit" style="width: 100%; margin-top: 13%;" class="btn btn-primary">가입</button>
         </form>
-        <a href="singup.html">
-            <button style="width: 100%; margin-top: 3%;" class="btn btn-success">회원 가입</button>
+        <a href="signin.html">
+            <button style="width: 100%; margin-top: 3%;" class="btn btn-success">로그인</button>
         </a>
     </div>
 </div>
