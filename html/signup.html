@@ -28,16 +28,16 @@
         <form>
             <legend style="font-weight: bold; text-align: center; margin-bottom: 10%;">회원 가입</legend>
             <div class="mb-3">
-                <input type="text" id="nickname" class="form-control" placeholder="아이디를 입력해 주세요." required>
+                <input type="text" id="nickname" class="form-control" placeholder="아이디를 입력해 주세요.">
             </div>
             <div class="mb-3">
-                <input type="text" id="email" class="form-control" placeholder="example@email.com" required>
+                <input type="text" id="email" class="form-control" placeholder="example@email.com">
             </div>
             <div class="mb-3">
-                <input type="text" id="username" class="form-control" placeholder="이름을 입력해 주세요." required>
+                <input type="text" id="username" class="form-control" placeholder="이름을 입력해 주세요.">
             </div>
             <div class="mb-3">
-                <input type="text" id="password" class="form-control" placeholder="비밀번호를 입력해 주세요." required>
+                <input type="text" id="password" class="form-control" placeholder="비밀번호를 입력해 주세요.">
             </div>
             <div class="mb-3">
                 <label for="disabledSelect" class="form-label">가입 유형을 선택하세요.</label>
@@ -47,7 +47,8 @@
                 </select>
 
             </div>
-            <button type="submit" style="width: 100%; margin-top: 13%;" class="btn btn-primary">가입</button>
+            <button type="button" style="width: 100%; margin-top: 13%;" class="btn btn-primary"
+                onclick="handleSignup()">가입</button>
         </form>
         <a href="signin.html">
             <button style="width: 100%; margin-top: 3%;" class="btn btn-success">로그인</button>

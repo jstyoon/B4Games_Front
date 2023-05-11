@@ -35,7 +35,7 @@ async function handelLogin() {
             }).join(''));
 
             localStorage.setItem("payload", jsonPayload)
-            alert("환영합니다.")
+            alert(`${response_json.nickname}님 환영합니다.`)
             window.location.replace(`${frontend_base_url}/html/home.html`)
         } else {
             alert("회원정보가 일치하지 않습니다.")
