@@ -1,4 +1,4 @@
-const frontend_base_url = "http://127.0.0.1:10587/"
+const frontend_base_url = "http://127.0.0.1:5500"
 const backend_base_url = "http://127.0.0.1:8000"
 const API_USERS = "api/users"
 
@@ -17,6 +17,11 @@ function handleLogout() {
     localStorage.removeItem("refresh")
     localStorage.removeItem("payload")
     location.reload();
+}
+
+// 메인페이지에서 게시글 클릭하면 상세페이지로 이동하는 함수
+function articleDetail(article_id) {
+    window.location.href = `${frontend_base_url}/html/post_detail.html?article_id=${article_id}`
 }
 
 // 메인페이지에 게시글 가져오기
@@ -50,6 +55,8 @@ window.onload = async function loadArticles() {
     articles.forEach(article => {
         const newCol = document.createElement("div");
         newCol.setAttribute("class", "col")
+        newCol.setAttribute("onclick", `articleDetail(${article.pk})`)
+
         const newCard = document.createElement("div")
         newCard.setAttribute("class", "card")
         newCard.setAttribute("id", article.pk)

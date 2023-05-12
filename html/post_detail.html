@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/css/post.css">
+    <link rel="stylesheet" type="text/css" href="/css/base.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
-    <title>Posts</title>
+    <title>PostDetail</title>
 </head>
 <body style="background-color: #121212;;">
     <nav class="navbar bg-body-tertiary">
@@ -43,18 +43,16 @@
                 </li>
             </div>
         </div>
-        <h1>게시글 작성 페이지</h1>
-        <form>
-            <label for="title">제목:</label>
-            <input type="text" id="title" name="title"><br><br>
-            <label for="content">내용:</label>
-            <textarea id="content" name="content"></textarea><br><br>
-            <label for="image">이미지:</label>
-            <input type="file" id="image" name="image"><br><br>
-            <button type="button" id="button-btn" onclick="postArticle()">작성</button>
-        </form>
-</body>
+        <div class="container text-center">
+            <h1 id="article-title">게시글 제목</h1>  
+            <div class="row row-cols-1 row-cols-mb-2" id="article"></div>
+                <div class="col" id="article-image">게시글 사진</div>
+                <div class="col" id="article-content">게시글 내용</div>
 
+        </div>
+ 
+
+</body>
 <script src="/js/home.js"></script>
-<script src="/js/posts.js"></script>
+<script src="/js/post_detail.js"></script>
 </html>
