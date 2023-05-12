@@ -1,4 +1,4 @@
-const frontend_base_url = "http://127.0.0.1:1359"
+const frontend_base_url = "http://127.0.0.1:10587/"
 const backend_base_url = "http://127.0.0.1:8000"
 const API_USERS = "api/users"
 
@@ -24,7 +24,9 @@ window.onload = () => {
         dropdown_item_2.style.display = "none"
     } else {
         dropdown_item_3 = document.getElementById("dropdown_item_3")
+        dropdown_item_4 = document.getElementById("dropdown_item_4")
         dropdown_item_3.style.display = "none"
+        dropdown_item_4.style.display = "none"
     }
 }
 
@@ -37,3 +39,4 @@ function handleLogout() {
     localStorage.removeItem("payload")
     location.reload();
 }
+
