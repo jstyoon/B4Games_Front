@@ -1,9 +1,9 @@
 // document.write("<script src='/js/API.js'></script>");
-const frontend_base_url = "http://127.0.0.1:5500"
+const frontend_base_url = "http://127.0.0.1:5500/"
 const backend_base_url = "http://127.0.0.1:8000"
 const API_USERS = "api/users"
 async function handelLogin() {
-    const nickname = document.getElementById("nickname").value
+    const email = document.getElementById("email").value
     const password = document.getElementById("password").value
     // console.log(nickname, password)
 
@@ -16,7 +16,7 @@ async function handelLogin() {
             },
             method: 'POST',
             body: JSON.stringify({
-                "nickname": nickname,
+                "email": email,
                 "password": password,
             })
         })
@@ -35,7 +35,6 @@ async function handelLogin() {
             }).join(''));
 
             localStorage.setItem("payload", jsonPayload)
-            alert(`${response_json.nickname}님 환영합니다.`)
             window.location.replace(`${frontend_base_url}/html/home.html`)
         } else {
             alert("회원정보가 일치하지 않습니다.")

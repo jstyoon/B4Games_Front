@@ -1,5 +1,3 @@
-const frontend_base_url = "http://127.0.0.1:5500"
-const backend_base_url = "http://127.0.0.1:8000"
 
 async function postArticle() {
     const title = document.getElementById("title").value
@@ -10,7 +8,12 @@ async function postArticle() {
 
     formdata.append('title', title)
     formdata.append('content', content)
-    formdata.append('image', image)
+
+    if (image) {
+        formdata.append('image', image)
+    } else {
+        formdata.append('image', '')
+    }
 
     let token = localStorage.getItem("access")
 
@@ -24,7 +27,7 @@ async function postArticle() {
     )
     if (response.status==200) {
         alert("작성완료")
-        window.location.replace(`${frontend_base_url}/`);
+        window.location.replace(`${frontend_base_url}/html/home.html`);
     } else {
         alert(response.status)
     }

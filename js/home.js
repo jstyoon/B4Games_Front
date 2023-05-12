@@ -8,9 +8,25 @@ const API_USERS = "api/users"
 //     .then((response) => response.json())
 //     .then((data) => console.log(data));
 
-window.onload = () => {
-    //브라우저가 실행되면 실행
-    console.log("로딩되었음")
+
+
+//  로그아웃
+function handleLogout() {
+    console.log("테스트 완료")
+    localStorage.removeItem("access")
+    localStorage.removeItem("refresh")
+    localStorage.removeItem("payload")
+    location.reload();
+}
+
+// 메인페이지에서 게시글 클릭하면 상세페이지로 이동하는 함수
+function articleDetail(article_id) {
+    window.location.href = `${frontend_base_url}/html/post_detail.html?article_id=${article_id}`
+}
+
+// 메인페이지에 게시글 가져오기
+window.onload = async function loadArticles() {
+
 
     const payload = localStorage.getItem("payload");
     const payload_parse = JSON.parse(payload)
@@ -24,25 +40,13 @@ window.onload = () => {
         dropdown_item_2.style.display = "none"
     } else {
         dropdown_item_3 = document.getElementById("dropdown_item_3")
+        dropdown_item_4 = document.getElementById("dropdown_item_4")
+        dropdown_item_5 = document.getElementById("dropdown_item_5")
         dropdown_item_3.style.display = "none"
+        dropdown_item_4.style.display = "none"
+        dropdown_item_5.style.display = "none"
     }
-    
-    
-}
 
-
-//  로그아웃
-function handleLogout() {
-    console.log("테스트 완료")
-    localStorage.removeItem("access")
-    localStorage.removeItem("refresh")
-    localStorage.removeItem("payload")
-    location.reload();
-}
-
-// 메인페이지에 게시글 가져오기
-window.onload = async function loadArticles() {
-    
     const articles = await getArticles()
     console.log(articles)
 
@@ -51,6 +55,8 @@ window.onload = async function loadArticles() {
     articles.forEach(article => {
         const newCol = document.createElement("div");
         newCol.setAttribute("class", "col")
+        newCol.setAttribute("onclick", `articleDetail(${article.pk})`)
+
         const newCard = document.createElement("div")
         newCard.setAttribute("class", "card")
         newCard.setAttribute("id", article.pk)
@@ -61,13 +67,13 @@ window.onload = async function loadArticles() {
         articleImage.setAttribute("class", "card-img-top")
         articleImage.setAttribute("width", "350")
         articleImage.setAttribute("height", "400")
-        
+
         if (article.image) {
-            articleImage.setAttribute("src", `${backend_base_url}${article.image}`) 
+            articleImage.setAttribute("src", `${backend_base_url}${article.image}`)
         } else {
-            articleImage.setAttribute("src", "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbB5kLi%2Fbtse96eg3uA%2FvJleU9SMKYxEXTqEDzioBK%2Fimg.jpg") 
+            articleImage.setAttribute("src", "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbB5kLi%2Fbtse96eg3uA%2FvJleU9SMKYxEXTqEDzioBK%2Fimg.jpg")
         }
-        
+
         newCard.appendChild(articleImage)
 
         const newCardBody = document.createElement("div")
@@ -77,7 +83,7 @@ window.onload = async function loadArticles() {
         const newCardTitle = document.createElement("h5")
         newCardTitle.setAttribute("class", "card-title")
         if (article.title.length > 10) {
-            newCardTitle.innerText = article.title.substring(0, 10) + "..." 
+            newCardTitle.innerText = article.title.substring(0, 10) + "..."
         } else {
             newCardTitle.innerText = article.title
         }
@@ -91,7 +97,7 @@ window.onload = async function loadArticles() {
         } else {
             newCardText.innerText = article.content
         }
-        
+
 
         newCardBody.appendChild(newCardText)
 
@@ -110,7 +116,7 @@ async function getArticles() {
     })
 
     console.log(response)
-    if (response.status==200) {
+    if (response.status == 200) {
         const response_json = await response.json()
         return response_json
     } else {
