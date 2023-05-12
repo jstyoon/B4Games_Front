@@ -26,6 +26,8 @@ window.onload = () => {
         dropdown_item_3 = document.getElementById("dropdown_item_3")
         dropdown_item_3.style.display = "none"
     }
+    
+    
 }
 
 
