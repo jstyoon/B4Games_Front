@@ -8,9 +8,20 @@ const API_USERS = "api/users"
 //     .then((response) => response.json())
 //     .then((data) => console.log(data));
 
-window.onload = () => {
-    //브라우저가 실행되면 실행
-    console.log("로딩되었음")
+
+
+//  로그아웃
+function handleLogout() {
+    console.log("테스트 완료")
+    localStorage.removeItem("access")
+    localStorage.removeItem("refresh")
+    localStorage.removeItem("payload")
+    location.reload();
+}
+
+// 메인페이지에 게시글 가져오기
+window.onload = async function loadArticles() {
+
 
     const payload = localStorage.getItem("payload");
     const payload_parse = JSON.parse(payload)
@@ -28,20 +39,6 @@ window.onload = () => {
         dropdown_item_3.style.display = "none"
         dropdown_item_4.style.display = "none"
     }
-}
-
-
-//  로그아웃
-function handleLogout() {
-    console.log("테스트 완료")
-    localStorage.removeItem("access")
-    localStorage.removeItem("refresh")
-    localStorage.removeItem("payload")
-    location.reload();
-}
-
-// 메인페이지에 게시글 가져오기
-window.onload = async function loadArticles() {
 
     const articles = await getArticles()
     console.log(articles)
