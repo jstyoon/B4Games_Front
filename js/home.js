@@ -38,7 +38,7 @@ function handleLogout() {
     location.reload();
 }
 
-// 메인에 게시글 가져오기
+// 메인페이지에 게시글 가져오기
 window.onload = async function loadArticles() {
     
     const articles = await getArticles()
