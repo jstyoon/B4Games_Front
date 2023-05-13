@@ -27,14 +27,17 @@
     <div style="margin: 10%;">
         <form>
             <legend style="font-weight: bold; text-align: center; margin-bottom: 10%;">회원 가입</legend>
-            <div class="mb-3">
-                <input type="text" id="username" class="form-control" placeholder="아이디를 입력해 주세요.">
+            <div>
+                <input type="hidden" id="user_id" style="display: none;">
             </div>
             <div class="mb-3">
-                <input type="text" id="email" class="form-control" placeholder="example@email.com">
+                <div type="read" id="email" class="form-control" style="background-color:blanchedalmond"></div>
             </div>
             <div class="mb-3">
-                <input type="password" id="password" class="form-control" placeholder="비밀번호를 입력해 주세요.">
+                <input type="text" id="username" class="form-control">
+            </div>
+            <div class="mb-3">
+                <input type="password" id="password" class="form-control" placeholder="새로운 비밀번호를 입력해 주세요.">
             </div>
             <div class="mb-3">
                 <label for="disabledSelect" class="form-label">가입 유형을 선택하세요.</label>
@@ -44,18 +47,21 @@
                 </select>
 
             </div>
+
+            <div class="mb-3">
+                <input type="text" id="auth_code" class="form-control" placeholder="인증 번호를 입력해주세요.">
+            </div>
             <button type="button" style="width: 100%; margin-top: 13%;" class="btn btn-primary"
-                onclick="handleSignup()">가입</button>
+                onclick="handleUpdateUserInfo()">수정</button>
         </form>
-        <a href="signin.html">
-            <button style="width: 100%; margin-top: 3%;" class="btn btn-success">로그인</button>
+
+        <button type="button" style="width: 100%; margin-top: 3%;" class="btn btn-primary" onclick="handleSendMail()">인증
+            코드 발급 받기</button>
+        <a href="home.html">
+            <button style="width: 100%; margin-top: 10%;" class="btn btn-success">메인 페이지로 이동</button>
         </a>
     </div>
 </div>
-
-
-
-
-<script src="/js/signup.js"></script>
+<script src="/js/updateUserInfo.js"></script>
 
 </html>

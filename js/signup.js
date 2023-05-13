@@ -28,7 +28,7 @@ async function handleSignup() {
         const response_json = await response.json()
         if (response.status == 201) {
             // alert(`가입을 축하드립니다!`)
-            // window.location.replace(`${frontend_base_url}/html/signin.html`)
+            window.location.replace(`${frontend_base_url}/html/signin.html`)
         } else if (response.status == 401) {
             alert("비밀번호 또는 이메일 정보가 올바르지 않습니다.");
         } else {

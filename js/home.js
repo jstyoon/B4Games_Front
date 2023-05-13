@@ -26,8 +26,6 @@ function articleDetail(article_id) {
 
 // 메인페이지에 게시글 가져오기
 window.onload = async function loadArticles() {
-
-
     const payload = localStorage.getItem("payload");
     const payload_parse = JSON.parse(payload)
     console.log(payload_parse)
@@ -35,16 +33,18 @@ window.onload = async function loadArticles() {
         dropdown_item_1 = document.getElementById("dropdown_item_1")
         dropdown_item_2 = document.getElementById("dropdown_item_2")
         dropdown_menu = document.getElementById("dropdown_toggle")
-        dropdown_menu.innerText = payload_parse.nickname
+        dropdown_menu.innerText = payload_parse.username
         dropdown_item_1.style.display = "none"
         dropdown_item_2.style.display = "none"
     } else {
         dropdown_item_3 = document.getElementById("dropdown_item_3")
         dropdown_item_4 = document.getElementById("dropdown_item_4")
         dropdown_item_5 = document.getElementById("dropdown_item_5")
+        dropdown_item_6 = document.getElementById("dropdown_item_6")
         dropdown_item_3.style.display = "none"
         dropdown_item_4.style.display = "none"
         dropdown_item_5.style.display = "none"
+        dropdown_item_6.style.display = "none"
     }
 
     const articles = await getArticles()
