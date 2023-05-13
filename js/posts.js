@@ -1,4 +1,6 @@
 
+// 게시글작성 api (formdata)
+
 async function postArticle() {
     const title = document.getElementById("title").value
     const content = document.getElementById("content").value
