@@ -11,6 +11,7 @@ window.onload = async function () {
     const articleImage = document.getElementById("article-image")
     const articleContent = document.getElementById("article-content")
 
+
     articleTitle.innerText = response.title
     articleContent.innerText = response.content
 
