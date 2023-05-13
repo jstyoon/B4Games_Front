@@ -48,7 +48,18 @@
             <div class="row row-cols-1 row-cols-mb-2" id="article"></div>
                 <div class="col" id="article-image">게시글 사진</div>
                 <div class="col" id="article-content">게시글 내용</div>
-
+        </div>
+        <div class="form-container mt-5">
+            <form class="comment-form">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="new-comment" name="comment" placeholder="댓글을 작성해주세요">
+                </div>
+                <button type="button" class="btn btn-primary" onclick="submitComment()">등록</button>
+            </form>
+        
+            <ul id="comment-list" class="list-group comment-list">
+                <!-- 댓글 목록은 JavaScript로 동적으로 생성됩니다 -->
+            </ul>
         </div>
  
 
