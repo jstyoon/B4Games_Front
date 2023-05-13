@@ -16,7 +16,7 @@
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid" style="background-color: black;">
             <a class="navbar-brand" href="home.html">
-                <img src="https://images-eds-ssl.xboxlive.com/image?url=Q_rwcVSTCIytJ0KOzcjWTYl.n38D8jlKWXJx7NRJmQKBAEDCgtTAQ0JS02UoaiwRj.VcHXTwP3Gcq532nGGgSA8qyM.nT53pbAyjew8mzCXzC0mTj86VJ_q_ZhLoMNJuhb7Yws.q4QMuASMMTASiIA--&format=source"
+                <img src="/static/b4.jpg"
                     alt="Logo" width="70" height="70" class="d-inline-block align-text-top">
             </a>
             <div class="d-flex flex-row" style="margin-right: 5%;">
@@ -43,16 +43,26 @@
                 </li>
             </div>
         </div>
-        <h1>게시글 작성 페이지</h1>
-        <form>
-            <label for="title">제목:</label>
-            <input type="text" id="title" name="title"><br><br>
-            <label for="content">내용:</label>
-            <textarea id="content" name="content"></textarea><br><br>
-            <label for="image">이미지:</label>
-            <input type="file" id="image" name="image"><br><br>
-            <button type="button" id="button-btn" onclick="postArticle()">작성</button>
-        </form>
+        </nav>>
+        <form class="my-form">
+            <label for="title">제목</label>
+            <input type="text" id="title" name="title">
+            <label for="content">내용</label>
+            <textarea id="content" name="content"></textarea>
+            <label for="image">이미지</label>
+            <input type="file" id="image" name="image">
+            <button id="button-btn" type="button" onclick="postArticle()">작성</button>
+          </form>
+          <footer style="border-top: 1px solid white; padding: 10px; text-align: center; margin-top: 50px;">
+            <div class="row justify-content-center">
+              <div class="col-6">
+                  <img src="/static/b4.jpg"
+                  alt="Logo" width="70" height="70" class="d-inline-block align-text-top">
+                <p>B4 GAMES ® 2023 TEAM PROJECT.</p>
+              </div>
+            </div>
+          </footer>
+        
 </body>
 
 <script src="/js/home.js"></script>

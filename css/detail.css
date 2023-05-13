@@ -2,10 +2,7 @@ body {
     background-color: #121212;
 }
 
-header {
-    background-color: #000;
-    color: #fff;
-}
+
 
 .main-container {
     display: flex;
@@ -55,3 +52,6 @@ header {
     margin-bottom: 1rem;
     border-radius: 0.25rem;
 }
+
+
+  
