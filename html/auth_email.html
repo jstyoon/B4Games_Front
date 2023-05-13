@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/base.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+    <title>signup</title>
+</head>
+
+<body style="background-color: black;">
+</body>
+<div class="mx-auto p-2"
+    style="width: 30%; align-items: center; color: white; margin-top: 5%; background-color:#252323ee; height: 750px; border: 30px; justify-content: center;">
+    <div style="text-align: center;">
+        <a href="home.html">
+            <img src="https://images-eds-ssl.xboxlive.com/image?url=Q_rwcVSTCIytJ0KOzcjWTYl.n38D8jlKWXJx7NRJmQKBAEDCgtTAQ0JS02UoaiwRj.VcHXTwP3Gcq532nGGgSA8qyM.nT53pbAyjew8mzCXzC0mTj86VJ_q_ZhLoMNJuhb7Yws.q4QMuASMMTASiIA--&format=source"
+                alt="Logo" width="70" height="70" style="margin-top: 5%;">
+        </a>
+    </div>
+    <div style="margin: 10%;">
+        <form>
+            <legend style="font-weight: bold; text-align: center; margin-bottom: 10%;">이메일 인증</legend>
+            <div class="mb-3">
+                <input type="text" id="email" class="form-control" placeholder="이메일을 입력해주세요.">
+            </div>
+
+
+            <div class="mb-3">
+                <input type="text" id="auth_code" class="form-control" placeholder="인증 번호를 입력해주세요.">
+            </div>
+            <button type="button" style="width: 100%; margin-top: 13%;" class="btn btn-primary"
+                onclick="handleAuthEmail()">제출</button>
+        </form>
+
+        <button type="button" style="width: 100%; margin-top: 3%;" class="btn btn-primary" onclick="handleSendMail()">인증
+            코드 발급 받기</button>
+        <a href="home.html">
+            <button style="width: 100%; margin-top: 10%;" class="btn btn-success">메인 페이지로 이동</button>
+        </a>
+    </div>
+</div>
+<script src="/js/auth_email.js"></script>
+
+</html>

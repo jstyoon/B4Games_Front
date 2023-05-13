@@ -48,10 +48,9 @@ async function handleUpdateUserInfo() {
                 "is_seller": is_seller,
             })
         })
-        const response_json = await response.json()
         if (response.status == 200) {
             alert(`회원 정보를 수정 했습니다.`)
-            // window.location.replace(`${frontend_base_url}/html/signin.html`)
+            window.location.replace(`${frontend_base_url}/html/home.html`)
         } else if (response.status == 401) {
             alert(`비밀번호가 올바르지 않거나 로그인 인증 기간이 만료되었습니다.`)
         } else if (response.status == 421) {
