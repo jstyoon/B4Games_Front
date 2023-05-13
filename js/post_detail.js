@@ -1,3 +1,15 @@
+const frontend_base_url = "http://127.0.0.1:5500"
+const backend_base_url = "http://127.0.0.1:8000"
+
+// 상단바 로그아웃
+function handleLogout() {
+    console.log("테스트 완료")
+    localStorage.removeItem("access")
+    localStorage.removeItem("refresh")
+    localStorage.removeItem("payload")
+    window.location.replace(`${frontend_base_url}/html/home.html`);
+}
+
 // 댓글 작성할 때 DB로 댓글 내용과 게시글 id를 같이 보내주기 위한 정의
 let articleId
 
@@ -64,8 +76,54 @@ async function loadArticles(articleId) {
 
 }
 
+// 게시글 수정하기
+function updateMode() {
+    const title = document.getElementById("article-title")
+    const content = document.getElementById("article-content")
+    title.style.visibility = "hidden"
+    content.style.visibility = "hidden"
+
+    const input_title = document.createElement("textarea")
+    input_title.setAttribute("id", "input_title")
+    input_title.innerText = title.innerHTML
+
+    const input_content = document.createElement("textarea")
+    input_content.setAttribute("id", "input_content")
+    input_content.innerText = content.innerHTML
+    input_content.rows = 10
+
+}
+
+// 게시글 삭제하기
+async function removeArticle() {
+    await deleteArticle(articleId)
+    alert("삭제되었습니다.")
+    window.location.replace(`${frontend_base_url}/html/home.html`);
+}
+
+
 // 페이지 로딩되면 게시글이랑 댓글 가져오기
 window.onload = async function () {
+    // 상단바 (from homa.js)
+    const payload = localStorage.getItem("payload");
+    const payload_parse = JSON.parse(payload)
+    console.log(payload_parse)
+    if (payload_parse != null) {
+        dropdown_item_1 = document.getElementById("dropdown_item_1")
+        dropdown_item_2 = document.getElementById("dropdown_item_2")
+        dropdown_menu = document.getElementById("dropdown_toggle")
+        dropdown_menu.innerText = payload_parse.nickname
+        dropdown_item_1.style.display = "none"
+        dropdown_item_2.style.display = "none"
+    } else {
+        dropdown_item_3 = document.getElementById("dropdown_item_3")
+        dropdown_item_4 = document.getElementById("dropdown_item_4")
+        dropdown_item_5 = document.getElementById("dropdown_item_5")
+        dropdown_item_3.style.display = "none"
+        dropdown_item_4.style.display = "none"
+        dropdown_item_5.style.display = "none"
+    }
+
     const urlParams = new URLSearchParams(window.location.search);
     articleId = urlParams.get('article_id');
     console.log(articleId)
@@ -122,3 +180,24 @@ async function postComment(articleId, newComment) {
         alert(response.status)
     }
 }
+
+// 게시글 삭제 api
+async function deleteArticle() {
+    
+    let token = localStorage.getItem("access")
+
+    const response = await fetch(`${backend_base_url}/api/posts/${articleId}`,
+    {
+        method: 'DELETE',
+        headers: {
+            "Authorization" : `Bearer ${token}`
+        },
+
+        })
+        if (response.status == 200) {
+            
+        } else {
+            alert(response.status)
+        }
+
+    }
