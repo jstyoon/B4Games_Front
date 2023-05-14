@@ -1,4 +1,4 @@
-const frontend_base_url = "http://127.0.0.1:8741"
+const frontend_base_url = "http://127.0.0.1:5500"
 const backend_base_url = "http://127.0.0.1:8000"
 const API_USERS = "api/users"
 
@@ -78,7 +78,8 @@ async function loadArticles(articleId) {
     const payload = localStorage.getItem("payload");
     const currentUser = payload ? JSON.parse(payload).username : undefined;
     console.log(currentUser)
-
+    
+    // currentUser !=undefined 그리고 authorId = currentUser 
     if (currentUser && authorId === currentUser) {
         document.getElementById("update_button").style.display = "block";
         document.getElementById("delete_button").style.display = "block";
