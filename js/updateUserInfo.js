@@ -1,9 +1,9 @@
-const frontend_base_url = "http://127.0.0.1:3722"
+const frontend_base_url = "http://127.0.0.1:8741"
 const backend_base_url = "http://127.0.0.1:8000"
 const API_USERS = "api/users"
 
 
-window.onload = async function loadArticles() {
+window.onload = () => {
     const payload = localStorage.getItem("payload");
     const payload_parse = JSON.parse(payload)
     console.log(payload_parse)
