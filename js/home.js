@@ -51,11 +51,11 @@ window.onload = async function loadArticles() {
     } else {
         dropdown_item_3 = document.getElementById("dropdown_item_3")
         dropdown_item_4 = document.getElementById("dropdown_item_4")
-        // dropdown_item_5 = document.getElementById("dropdown_item_5")
+        dropdown_item_5 = document.getElementById("dropdown_item_5")
         dropdown_item_8 = document.getElementById("dropdown_item_8")
         dropdown_item_3.style.display = "none"
         dropdown_item_4.style.display = "none"
-        // dropdown_item_5.style.display = "none"
+        dropdown_item_5.style.display = "none"
         dropdown_item_8.style.display = "none"
     }
 
