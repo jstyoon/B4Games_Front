@@ -207,3 +207,22 @@ async function postComment(articleId, newComment) {
         alert(response.status)
     }
 }
+
+
+// 더보기란 수정,삭제 
+function toggleOptions() {
+    var optionsDiv = document.getElementById("options");
+    if (optionsDiv.style.display === "none") {
+      optionsDiv.style.display = "block";
+    } else {
+      optionsDiv.style.display = "none";
+    }
+  }
+  
+  
+
+
+
+  
+  
+  
