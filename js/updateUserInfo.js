@@ -18,9 +18,27 @@ window.onload = () => {
 }
 
 async function handleSendMail() {
-    const user_id = document.getElementById("user_id").value
-    const response = await fetch(`${backend_base_url}/${API_USERS}/get-auth-code/${user_id}`)
+
+    const payload = localStorage.getItem("payload");
+    const payload_parse = JSON.parse(payload)
+    const response = await fetch(`${backend_base_url}/${API_USERS}/get-auth-code/`, {
+        headers: {
+            'content-type': 'application/json',
+        },
+        method: 'POST',
+        body: JSON.stringify({
+            "email": payload_parse.email,
+        })
+    })
+
+    if (response.status == 200) {
+        alert(`인증 메일을 발송했습니다.`)
+    } else {
+        alert(`메일 발송에 실패했습니다.`)
+    }
 }
+
+
 
 // 회원 정보 수정
 async function handleUpdateUserInfo() {
@@ -37,11 +55,19 @@ async function handleUpdateUserInfo() {
         const access_token = localStorage.getItem("access")
         const response = await fetch(`${backend_base_url}/${API_USERS}/${user_id}/`, {
             headers: {
+                'content-type': 'application/json',
                 "Authorization": `Bearer ${access_token}`
             },
             method: 'PUT',
-            body: formdata
+            body: JSON.stringify({
+                "auth_code": auth_code,
+                "password": password,
+                "username": username,
+                "is_seller": is_seller,
+
+            })
         })
+        const response_json = await response.json()
         if (response.status == 200) {
             alert(`회원 정보를 수정 했습니다.`)
             window.location.replace(`${frontend_base_url}/html/home.html`)
