@@ -12,7 +12,6 @@ const API_USERS = "api/users"
 
 //  로그아웃
 function handleLogout() {
-    console.log("테스트 완료")
     localStorage.removeItem("access")
     localStorage.removeItem("refresh")
     localStorage.removeItem("payload")
@@ -29,7 +28,6 @@ window.onload = async function loadArticles() {
     const payload = localStorage.getItem("payload");
     const payload_parse = JSON.parse(payload)
     const dropdown_options_1 = document.querySelectorAll(".dropdown_option_1");
-    const dropdown_options_2 = document.querySelectorAll(".dropdown_option_2");
     if (payload_parse != null) {
         dropdown_options_1.forEach((option) => {
             option.style.display = "none";
@@ -40,7 +38,7 @@ window.onload = async function loadArticles() {
 
         dropdown_menu = document.getElementById("dropdown_toggle")
         dropdown_menu.innerText = nav_response_json.username
-        console.log(nav_response_json.is_seller)
+
 
         nav_profile_image = document.getElementById("nav_profile_image")
 
@@ -58,7 +56,7 @@ window.onload = async function loadArticles() {
     // 판매회원 아니면 글작성 아예 안보이게
 
     const isSeller = JSON.parse(payload ?? '{}').is_seller;
-    console.log(isSeller)
+
     if (isSeller === false) {
         dropdown_item_5 = document.getElementById("dropdown_item_5")
         dropdown_item_5.style.display = "none"

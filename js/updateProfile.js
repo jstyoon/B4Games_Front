@@ -19,7 +19,7 @@ window.onload = async () => {
 
         dropdown_menu = document.getElementById("dropdown_toggle")
         dropdown_menu.innerText = nav_response_json.username
-        console.log(nav_response_json.is_seller)
+
 
         nav_profile_image = document.getElementById("nav_profile_image")
         if (nav_response_json.image != null) {
@@ -40,7 +40,7 @@ window.onload = async () => {
     // 판매회원 아니면 글작성 아예 안보이게
 
     const isSeller = JSON.parse(payload ?? '{}').is_seller;
-    console.log(isSeller)
+
     if (isSeller === false) {
         dropdown_item_5 = document.getElementById("dropdown_item_5")
         dropdown_item_5.style.display = "none"
@@ -75,7 +75,7 @@ async function updateProfile() {
     const username = document.getElementById("username").value
     const status_message = document.getElementById("status_message").value
     const user_id = document.getElementById("user_id").value
-    console.log(image, username, status_message, user_id)
+
 
 
 
@@ -108,7 +108,7 @@ async function updateProfile() {
             window.location.replace(`${frontend_base_url}/html/profile.html`)
         } else if (response.status == 400) {
             alert(response_json.message)
-            console.log(response_json)
+
         }
     } catch (err) {
         // server error
