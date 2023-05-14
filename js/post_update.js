@@ -11,17 +11,35 @@ window.onload = async function () {
     if (payload_parse != null) {
         dropdown_item_1 = document.getElementById("dropdown_item_1")
         dropdown_item_2 = document.getElementById("dropdown_item_2")
+        dropdown_item_7 = document.getElementById("dropdown_item_7")
         dropdown_menu = document.getElementById("dropdown_toggle")
-        dropdown_menu.innerText = payload_parse.nickname
+        dropdown_menu.innerText = payload_parse.username
         dropdown_item_1.style.display = "none"
         dropdown_item_2.style.display = "none"
+        dropdown_item_7.style.display = "none"
+
+
+        const response = await fetch(`${backend_base_url}/${API_USERS}/profile_view/${payload_parse.user_id}`)
+        const response_json = await response.json()
+
+        profile_image = document.getElementById("profile_image")
+
+        //  프로필 이미지 불러오기
+        if (response_json.image != null) {
+            profile_image.setAttribute("src", `${backend_base_url}${response_json.image}`)
+        }
+
     } else {
         dropdown_item_3 = document.getElementById("dropdown_item_3")
         dropdown_item_4 = document.getElementById("dropdown_item_4")
         dropdown_item_5 = document.getElementById("dropdown_item_5")
+        dropdown_item_6 = document.getElementById("dropdown_item_6")
+        dropdown_item_8 = document.getElementById("dropdown_item_8")
         dropdown_item_3.style.display = "none"
         dropdown_item_4.style.display = "none"
         dropdown_item_5.style.display = "none"
+        dropdown_item_6.style.display = "none"
+        dropdown_item_8.style.display = "none"
     }
 
     // 판매회원 아니면 글작성 아예 안보이게
@@ -45,7 +63,7 @@ async function beforeArticle(articleId) {
     if (response.status == 200) {
         response_json = await response.json()
         console.log(response_json)
-        
+
     } else {
         alert(response.status)
     }
@@ -88,12 +106,12 @@ async function updateArticle() {
     const response = await fetch(`${backend_base_url}/api/posts/${articleId}/`, {
         method: 'PUT',
         headers: {
-            "Authorization" : `Bearer ${token}`
+            "Authorization": `Bearer ${token}`
         },
         body: formdata
     }
     )
-    if (response.status==200) {
+    if (response.status == 200) {
         alert("수정되었습니다")
         window.history.back();
     } else {
