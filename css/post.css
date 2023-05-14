@@ -103,4 +103,8 @@ form label {
   }
 }
 
+.dropdown-menu {
+  display: block;
+}
+
   
