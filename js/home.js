@@ -1,4 +1,4 @@
-const frontend_base_url = "http://127.0.0.1:5500"
+const frontend_base_url = "http://127.0.0.1:8741"
 const backend_base_url = "http://127.0.0.1:8000"
 const API_USERS = "api/users"
 
@@ -60,12 +60,12 @@ window.onload = async function loadArticles() {
     }
 
     // 판매회원 아니면 글작성 아예 안보이게
-    const isSeller = JSON.parse(payload).is_seller;
+    const isSeller = JSON.parse(payload ?? '{}').is_seller;
+    console.log(isSeller)
     if (isSeller === false) {
         dropdown_item_5 = document.getElementById("dropdown_item_5")
         dropdown_item_5.style.display = "none"
     }
-
 
     const articles = await getArticles()
 

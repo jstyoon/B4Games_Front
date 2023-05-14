@@ -1,5 +1,6 @@
 const frontend_base_url = "http://127.0.0.1:8741"
 const backend_base_url = "http://127.0.0.1:8000"
+const API_USERS = "api/users"
 
 // 페이지 로딩되면 기존 게시글 내용 가져오기
 
@@ -43,7 +44,7 @@ window.onload = async function () {
     }
 
     // 판매회원 아니면 글작성 아예 안보이게
-    const isSeller = JSON.parse(payload).is_seller;
+    const isSeller = JSON.parse(payload ?? '{}').is_seller;
     if (isSeller === false) {
         dropdown_item_5 = document.getElementById("dropdown_item_5")
         dropdown_item_5.style.display = "none"
