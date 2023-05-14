@@ -1,4 +1,4 @@
-const frontend_base_url = "http://127.0.0.1:5500"
+const frontend_base_url = "http://127.0.0.1:8741"
 const backend_base_url = "http://127.0.0.1:8000"
 const API_USERS = "api/users"
 
@@ -43,11 +43,6 @@ window.onload = async function loadArticles() {
         dropdown_menu.innerText = nav_response_json.username
         console.log(nav_response_json.is_seller)
 
-        // if (nav_response_json.is_seller != True)
-        //     dropdown_item_5 = document.getElementById("dropdown_item_5")
-        // dropdown_item_5.style.display = "none"
-
-
         nav_profile_image = document.getElementById("nav_profile_image")
         if (nav_response_json.image != null) {
             nav_profile_image.setAttribute("src", `${backend_base_url}${nav_response_json.image}`)
@@ -56,11 +51,11 @@ window.onload = async function loadArticles() {
     } else {
         dropdown_item_3 = document.getElementById("dropdown_item_3")
         dropdown_item_4 = document.getElementById("dropdown_item_4")
-        // dropdown_item_5 = document.getElementById("dropdown_item_5")
+        dropdown_item_5 = document.getElementById("dropdown_item_5")
         dropdown_item_8 = document.getElementById("dropdown_item_8")
         dropdown_item_3.style.display = "none"
         dropdown_item_4.style.display = "none"
-        // dropdown_item_5.style.display = "none"
+        dropdown_item_5.style.display = "none"
         dropdown_item_8.style.display = "none"
     }
 
