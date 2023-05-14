@@ -34,19 +34,13 @@ async function handleUpdateUserInfo() {
 
     console.log(user_id)
     try {
-        let access_token = localStorage.getItem("access")
+        const access_token = localStorage.getItem("access")
         const response = await fetch(`${backend_base_url}/${API_USERS}/${user_id}/`, {
             headers: {
-                'content-type': 'application/json',
                 "Authorization": `Bearer ${access_token}`
             },
             method: 'PUT',
-            body: JSON.stringify({
-                "auth_code": auth_code,
-                "password": password,
-                "username": username,
-                "is_seller": is_seller,
-            })
+            body: formdata
         })
         if (response.status == 200) {
             alert(`회원 정보를 수정 했습니다.`)
