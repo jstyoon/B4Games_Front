@@ -65,12 +65,13 @@ window.onload = async function loadArticles() {
     }
 
     // 판매회원 아니면 글작성 아예 안보이게
-    const isSeller = JSON.parse(payload).is_seller;
-    if (isSeller == false) {
+
+    const isSeller = JSON.parse(payload ?? '{}').is_seller;
+    console.log(isSeller)
+    if (isSeller === false) {
         dropdown_item_5 = document.getElementById("dropdown_item_5")
         dropdown_item_5.style.display = "none"
     }
-
 
     const articles = await getArticles()
 
