@@ -54,4 +54,18 @@ body {
 }
 
 
+#more-options {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  #more-options-button {
+    margin-right: 0px;
+  }
+  
+  #comment-form button[type="button"] {
+    width: 65px; /* 등록 버튼 넓이 설정 */
+  }
   

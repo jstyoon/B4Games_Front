@@ -66,7 +66,7 @@ async function updateProfile() {
         const response_json = await response.json()
         if (response.status == 200) {
             alert(`회원 정보를 수정 했습니다.`)
-            window.location.replace(`${frontend_base_url}/html/update_profile.html`)
+            window.location.replace(`${frontend_base_url}/html/profile.html`)
         } else if (response.status == 400) {
             alert(response_json.message)
             console.log(response_json)
