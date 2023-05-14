@@ -12,6 +12,17 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
     <title>Home</title>
+    <style>
+        a {
+            text-decoration: none;
+            /* 밑줄 제거 */
+            color: white;
+            /* 글자 색상 */
+            background-color: transparent;
+            /* 배경색상 */
+            color: black;
+        }
+    </style>
 </head>
 
 
@@ -37,16 +48,19 @@
                                 로그인
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" id="dropdown_item_1" href="signin.html">로그인</a></li>
-                                <li><a class="dropdown-item" id="dropdown_item_2" href="signup.html">회원 가입</a></li>
-                                <li><a class="dropdown-item" id="dropdown_item_3" href="#" onclick="handleLogout()">로그
+                                <li><a id="dropdown_item_1" class="dropdown_option_1" href="signin.html">로그인</a></li>
+                                <li><a id="dropdown_item_2" class="dropdown_option_1" href="signup.html">회원 가입</a></li>
+                                <li><a id="dropdown_item_3" class="dropdown_option_2" href="#"
+                                        onclick="handleLogout()">로그
                                         아웃</a>
                                 </li>
-                                <li><a class="dropdown-item" id="dropdown_item_4" href="updateUserInfo.html">회원 정보
+                                <li><a id="dropdown_item_4" class="dropdown_option_2" href="updateUserInfo.html">회원 정보
                                         수정</a></li>
-                                <li><a class="dropdown-item" id="dropdown_item_5" href="posts.html">게시글 작성</a></li>
-                                <li><a class="dropdown-item" id="dropdown_item_7" href="auth_email.html">이메일 인증</a></li>
-                                <li><a class="dropdown-item" id="dropdown_item_8" href="profile.html">프로필 페이지</a></li>
+                                <li><a id="dropdown_item_5" class="dropdown_option_2" href="posts.html">게시글 작성</a></li>
+                                <li><a id="dropdown_item_7" class="dropdown_option_1" href="auth_email.html">이메일 인증</a>
+                                </li>
+                                <li><a id="dropdown_item_8" class="dropdown_option_2" href="profile.html">프로필 페이지</a>
+                                </li>
                             </ul>
                         </div>
                     </div>

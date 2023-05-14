@@ -146,12 +146,10 @@ window.onload = async function () {
         dropdown_item_3 = document.getElementById("dropdown_item_3")
         dropdown_item_4 = document.getElementById("dropdown_item_4")
         dropdown_item_5 = document.getElementById("dropdown_item_5")
-        dropdown_item_6 = document.getElementById("dropdown_item_6")
         dropdown_item_8 = document.getElementById("dropdown_item_8")
         dropdown_item_3.style.display = "none"
         dropdown_item_4.style.display = "none"
         dropdown_item_5.style.display = "none"
-        dropdown_item_6.style.display = "none"
         dropdown_item_8.style.display = "none"
     }
 
@@ -223,16 +221,15 @@ async function postComment(articleId, newComment) {
 function toggleOptions() {
     var optionsDiv = document.getElementById("options");
     if (optionsDiv.style.display === "none") {
-      optionsDiv.style.display = "block";
+        optionsDiv.style.display = "block";
     } else {
-      optionsDiv.style.display = "none";
+        optionsDiv.style.display = "none";
     }
-  }
-  
-  
+}
 
 
 
-  
-  
-  
+
+
+
+
