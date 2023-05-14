@@ -12,7 +12,6 @@ const API_USERS = "api/users"
 
 //  로그아웃
 function handleLogout() {
-    console.log("테스트 완료")
     localStorage.removeItem("access")
     localStorage.removeItem("refresh")
     localStorage.removeItem("payload")
@@ -28,8 +27,8 @@ function articleDetail(article_id) {
 window.onload = async function loadArticles() {
     const payload = localStorage.getItem("payload");
     const payload_parse = JSON.parse(payload)
-    console.log(payload_parse)
     if (payload_parse != null) {
+        // menu_option_1 = document.getElementsByClassName("menu_option_1")
         dropdown_item_1 = document.getElementById("dropdown_item_1")
         dropdown_item_2 = document.getElementById("dropdown_item_2")
         dropdown_item_7 = document.getElementById("dropdown_item_7")
@@ -39,6 +38,7 @@ window.onload = async function loadArticles() {
         dropdown_item_2.style.display = "none"
         dropdown_item_7.style.display = "none"
     } else {
+        // menu_option_1 = document.getElementsByClassName("menu_option_1")
         dropdown_item_3 = document.getElementById("dropdown_item_3")
         dropdown_item_4 = document.getElementById("dropdown_item_4")
         dropdown_item_5 = document.getElementById("dropdown_item_5")
@@ -49,6 +49,11 @@ window.onload = async function loadArticles() {
         dropdown_item_5.style.display = "none"
         dropdown_item_6.style.display = "none"
         dropdown_item_8.style.display = "none"
+
+        // profile_image = document.getElementById("profile_image")
+        // if (response_json.image != null) {
+        //     profile_image.setAttribute("src", `${backend_base_url}${response_json.image}`)
+        // }
     }
 
     // 판매회원 아니면 글작성 아예 안보이게
