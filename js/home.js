@@ -43,11 +43,6 @@ window.onload = async function loadArticles() {
         dropdown_menu.innerText = nav_response_json.username
         console.log(nav_response_json.is_seller)
 
-        // if (nav_response_json.is_seller != True)
-        //     dropdown_item_5 = document.getElementById("dropdown_item_5")
-        // dropdown_item_5.style.display = "none"
-
-
         nav_profile_image = document.getElementById("nav_profile_image")
         if (nav_response_json.image != null) {
             nav_profile_image.setAttribute("src", `${backend_base_url}${nav_response_json.image}`)
