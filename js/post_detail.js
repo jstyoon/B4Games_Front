@@ -1,9 +1,10 @@
-const frontend_base_url = "http://127.0.0.1:5500"
+const frontend_base_url = "http://127.0.0.1:8741"
 const backend_base_url = "http://127.0.0.1:8000"
+
+
 
 // 상단바 로그아웃
 function handleLogout() {
-    console.log("테스트 완료")
     localStorage.removeItem("access")
     localStorage.removeItem("refresh")
     localStorage.removeItem("payload")
@@ -17,7 +18,6 @@ let articleId
 // 댓글 가져오기
 async function loadComments(articleId) {
     const response = await getComments(articleId);
-    console.log(response)
 
     const commentsList = document.getElementById("comment-list")
     commentsList.innerHTML = ""
@@ -41,7 +41,6 @@ async function submitComment() {
     const commentElement = document.getElementById("new-comment")
     const newComment = commentElement.value
     const response = await postComment(articleId, newComment)
-    console.log(response)
     commentElement.value = ""
 
     // location.reload()
@@ -102,17 +101,17 @@ async function removeArticle() {
 
 // 게시글 삭제 api
 async function deleteArticle() {
-    
+
     let token = localStorage.getItem("access")
 
     const response = await fetch(`${backend_base_url}/api/posts/${articleId}`,
-    {
-        method: 'DELETE',
-        headers: {
-            "Authorization" : `Bearer ${token}`
-        },
-    })
-    if (response.status == 204) {   
+        {
+            method: 'DELETE',
+            headers: {
+                "Authorization": `Bearer ${token}`
+            },
+        })
+    if (response.status == 204) {
     } else {
         alert(response.status)
     }
@@ -124,7 +123,6 @@ window.onload = async function () {
     // 상단바 (from homa.js)
     const payload = localStorage.getItem("payload");
     const payload_parse = JSON.parse(payload)
-    console.log(payload_parse)
     if (payload_parse != null) {
         dropdown_item_1 = document.getElementById("dropdown_item_1")
         dropdown_item_2 = document.getElementById("dropdown_item_2")
@@ -150,11 +148,10 @@ window.onload = async function () {
 
     const urlParams = new URLSearchParams(window.location.search);
     articleId = urlParams.get('article_id');
-    console.log(articleId)
     loadArticles(articleId);
     loadComments(articleId);
 }
-    
+
 // 게시글 상세보기 api
 async function getArticle(articleId) {
     const response = await fetch(`${backend_base_url}/api/posts/${articleId}`,
@@ -162,7 +159,6 @@ async function getArticle(articleId) {
 
     if (response.status == 200) {
         response_json = await response.json()
-        console.log(response_json)
         return response_json
     } else {
         alert(response.status)
@@ -184,17 +180,17 @@ async function getComments(articleId) {
 
 // 댓글 작성 api (json)
 async function postComment(articleId, newComment) {
-    
+
     let token = localStorage.getItem("access")
 
     const response = await fetch(`${backend_base_url}/api/comments/${articleId}/comment`, {
         method: 'POST',
         headers: {
-            "content-type" : "application/json",
-            "Authorization" : `Bearer ${token}`
+            "content-type": "application/json",
+            "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify({
-            "content" : newComment,
+            "content": newComment,
         })
     }
     )

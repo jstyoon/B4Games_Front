@@ -1,4 +1,4 @@
-const frontend_base_url = "http://127.0.0.1:5500"
+const frontend_base_url = "http://127.0.0.1:8741"
 const backend_base_url = "http://127.0.0.1:8000"
 
 // 페이지 로딩되면 기존 게시글 내용 가져오기
@@ -117,4 +117,13 @@ async function updateArticle() {
     } else {
         alert(response.status)
     }
+}
+
+
+function handleLogout() {
+    console.log("테스트 완료")
+    localStorage.removeItem("access")
+    localStorage.removeItem("refresh")
+    localStorage.removeItem("payload")
+    location.reload();
 }
