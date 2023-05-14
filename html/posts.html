@@ -44,7 +44,6 @@
                                 <li><a class="dropdown-item" id="dropdown_item_4" href="updateUserInfo.html">회원 정보
                                         수정</a></li>
                                 <li><a class="dropdown-item" id="dropdown_item_5" href="posts.html">게시글 작성</a></li>
-                                <li><a class="dropdown-item" id="dropdown_item_6" href="mypage.html">마이 페이지</a></li>
                                 <li><a class="dropdown-item" id="dropdown_item_7" href="auth_email.html">이메일 인증</a></li>
                                 <li><a class="dropdown-item" id="dropdown_item_8" href="profile.html">프로필 페이지</a></li>
                             </ul>
@@ -53,22 +52,21 @@
                 </li>
             </div>
         </div>
-        </nav>>
-        <form class="my-form">
-            <label for="title">제목</label>
-            <input type="text" id="title" name="title">
-            <label for="content">내용</label>
-            <textarea id="content" name="content"></textarea>
-            <label for="image">이미지</label>
-            <input type="file" id="image" name="image" onchange="showFileName()">
-            <p id="file-name" style="color:white"></p>
-            <button id="button-btn" type="button" onclick="postArticle()">작성</button>
-          </form>
-          <footer style="border-top: 1px solid white; padding: 10px; text-align: center; margin-top: 50px;">
-            <div class="row justify-content-center">
-              <div class="col-6">
-                  <img src="/static/b4.jpg"
-                  alt="Logo" width="70" height="70" class="d-inline-block align-text-top">
+    </nav>>
+    <form class="my-form">
+        <label for="title">제목</label>
+        <input type="text" id="title" name="title">
+        <label for="content">내용</label>
+        <textarea id="content" name="content"></textarea>
+        <label for="image">이미지</label>
+        <input type="file" id="image" name="image" onchange="showFileName()">
+        <p id="file-name" style="color:white"></p>
+        <button id="button-btn" type="button" onclick="postArticle()">작성</button>
+    </form>
+    <footer style="border-top: 1px solid white; padding: 10px; text-align: center; margin-top: 50px;">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <img src="/static/b4.jpg" alt="Logo" width="70" height="70" class="d-inline-block align-text-top">
                 <p>B4 GAMES ® 2023 TEAM PROJECT.</p>
             </div>
         </div>
