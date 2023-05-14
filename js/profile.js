@@ -16,8 +16,10 @@ window.onload = async () => {
 
         const nav_response = await fetch(`${backend_base_url}/${API_USERS}/profile_view/${payload_parse.user_id}`)
         const nav_response_json = await nav_response.json()
+
         dropdown_menu = document.getElementById("dropdown_toggle")
         dropdown_menu.innerText = nav_response_json.username
+        console.log(nav_response_json.is_seller)
 
         nav_profile_image = document.getElementById("nav_profile_image")
         if (nav_response_json.image != null) {
@@ -28,12 +30,10 @@ window.onload = async () => {
         dropdown_item_3 = document.getElementById("dropdown_item_3")
         dropdown_item_4 = document.getElementById("dropdown_item_4")
         dropdown_item_5 = document.getElementById("dropdown_item_5")
-        dropdown_item_6 = document.getElementById("dropdown_item_6")
         dropdown_item_8 = document.getElementById("dropdown_item_8")
         dropdown_item_3.style.display = "none"
         dropdown_item_4.style.display = "none"
         dropdown_item_5.style.display = "none"
-        dropdown_item_6.style.display = "none"
         dropdown_item_8.style.display = "none"
     }
 

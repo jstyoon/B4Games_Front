@@ -78,7 +78,8 @@ async function loadArticles(articleId) {
     const payload = localStorage.getItem("payload");
     const currentUser = payload ? JSON.parse(payload).username : undefined;
     console.log(currentUser)
-
+    
+    // currentUser !=undefined 그리고 authorId = currentUser 
     if (currentUser && authorId === currentUser) {
         document.getElementById("update_button").style.display = "block";
         document.getElementById("delete_button").style.display = "block";
@@ -134,8 +135,10 @@ window.onload = async function () {
 
         const nav_response = await fetch(`${backend_base_url}/${API_USERS}/profile_view/${payload_parse.user_id}`)
         const nav_response_json = await nav_response.json()
+
         dropdown_menu = document.getElementById("dropdown_toggle")
         dropdown_menu.innerText = nav_response_json.username
+        console.log(nav_response_json.is_seller)
 
         nav_profile_image = document.getElementById("nav_profile_image")
         if (nav_response_json.image != null) {
