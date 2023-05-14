@@ -1,6 +1,11 @@
 
-// 게시글작성 api (formdata)
+function showFileName() {
+    const input = document.getElementById("image");
+    const fileName = document.getElementById("file-name");
+    fileName.textContent = input.files[0].name;
+}
 
+// 게시글작성 api (formdata)
 async function postArticle() {
     const title = document.getElementById("title").value
     const content = document.getElementById("content").value

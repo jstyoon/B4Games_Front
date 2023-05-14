@@ -1,4 +1,4 @@
-const frontend_base_url = "http://127.0.0.1:8741"
+const frontend_base_url = "http://127.0.0.1:5500"
 const backend_base_url = "http://127.0.0.1:8000"
 const API_USERS = "api/users"
 
@@ -46,7 +46,10 @@ window.onload = async () => {
         owner_follow.innerText = (response_json.followers.includes(payload_parse.email)) ? 'Unfollow' : "Follow"
     }
 
-
+    // 로드되면 내 게시글 가져오기
+    const urlParams = new URLSearchParams(window.location.search);
+    articleId = urlParams.get('article_id');
+    loadArticles(articleId)
 }
 
 async function followAPI() {
@@ -77,3 +80,93 @@ async function followAPI() {
         console.error(err)
     }
 }
+
+
+// 이하 프로필 쪽 게시글 모아보기 기능 구현
+
+// 게시글 수정페이지로 이동
+function updateMode(articleId) {
+    window.location.href = `post_update.html?article_id=${articleId}`
+}
+
+// 게시글 삭제하기
+async function removeArticle(articleId) {
+    await deleteArticle(articleId)
+    alert("삭제되었습니다.")
+    window.location.replace(`${frontend_base_url}/html/profile.html`);
+}
+
+// 게시글 삭제 api
+async function deleteArticle(articleId) {
+    
+    let token = localStorage.getItem("access")
+
+    const response = await fetch(`${backend_base_url}/api/posts/${articleId}`,
+    {
+        method: 'DELETE',
+        headers: {
+            "Authorization" : `Bearer ${token}`
+        },
+    })
+    if (response.status == 204) {   
+    } else {
+        alert(response.status)
+    }
+}
+
+// 프로필페이지에서 게시글 클릭하면 상세페이지로 이동하는 함수
+function articleDetail(article_id) {
+    window.location.href = `${frontend_base_url}/html/post_detail.html?article_id=${article_id}`
+}
+
+// 프로필페이지에 게시글 가져오는 함수
+async function loadArticles(articleId) {
+
+    const response = await getArticles(articleId);
+
+    const articleList = document.getElementById("article-list")
+    articleList.innerHTML = ""
+
+    response.forEach((article, index) => {
+
+        const image_url = article.image ? `${backend_base_url}${article.image}` : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbB5kLi%2Fbtse96eg3uA%2FvJleU9SMKYxEXTqEDzioBK%2Fimg.jpg";
+        
+        articleList.innerHTML += `
+        <tr>
+            <td style="color: white;">${index + 1}</td>
+            <td><a href="#" onclick="articleDetail(${article.pk})"><img src="${image_url}" alt="게시글이미지" width="50" height="50">${article.title}</a></td>
+            <td style="color: white;">${article.created_at.slice(0, 10)}</td>
+            <td><button type="button" class="btn btn-primary" onclick="updateMode(${article.pk})">수정</button></td>
+            <td><button type="button" class="btn btn-danger" onclick="removeArticle(${article.pk})">삭제</button></td>
+        </tr>
+        `
+    })
+
+}
+
+// 프로필 페이지에 게시글리스트 가져오는 api
+async function getArticles() {
+    const payload = localStorage.getItem("payload");
+    const payload_parse = JSON.parse(payload)
+    const userId = payload_parse.user_id
+    console.log(userId)
+
+    const response = await fetch(`${backend_base_url}/api/posts/${userId}/mypost/`, {
+        // headers: {
+        //     "Authorization" : "Bearer " + localStorage.getItem("access")
+        // },
+        // 로그인 없어도 되면 headers 없어도 됨
+        // 프로필은 필요한가? 없어도 가져오기는 함..
+        method: 'GET' // 디폴트 get이라서 없어도 ok
+    })
+
+    console.log(response)
+    if (response.status == 200) {
+        const response_json = await response.json()
+        console.log(response_json)
+        return response_json
+    } else {
+        alert("게시글 가져오기 실패")
+    }
+}
+
