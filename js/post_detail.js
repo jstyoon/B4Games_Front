@@ -49,8 +49,6 @@ async function submitComment() {
     loadComments(articleId)
 }
 
-// 댓글 폼 submit 막는 함수
-
 // 게시글 상세보기 
 async function loadArticles(articleId) {
     const response = await getArticle(articleId);
