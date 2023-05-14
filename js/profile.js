@@ -1,10 +1,11 @@
-const frontend_base_url = "http://127.0.0.1:5500"
+const frontend_base_url = "http://127.0.0.1:8741"
 const backend_base_url = "http://127.0.0.1:8000"
 const API_USERS = "api/users"
 
 window.onload = async () => {
     const payload = localStorage.getItem("payload");
     const payload_parse = JSON.parse(payload)
+
 
     if (payload_parse != null) {
         dropdown_item_1 = document.getElementById("dropdown_item_1")
@@ -28,29 +29,32 @@ window.onload = async () => {
         dropdown_item_3 = document.getElementById("dropdown_item_3")
         dropdown_item_4 = document.getElementById("dropdown_item_4")
         dropdown_item_5 = document.getElementById("dropdown_item_5")
-        dropdown_item_6 = document.getElementById("dropdown_item_6")
         dropdown_item_8 = document.getElementById("dropdown_item_8")
         dropdown_item_3.style.display = "none"
         dropdown_item_4.style.display = "none"
         dropdown_item_5.style.display = "none"
-        dropdown_item_6.style.display = "none"
         dropdown_item_8.style.display = "none"
     }
-
-
-
-
-
-
+    const urlParams = new URLSearchParams(window.location.search);
+    user_id = urlParams.get('user_id');
+    user_id = user_id == null ? payload_parse.user_id : user_id
 
     const follower = document.getElementById("follower")
     const following = document.getElementById("following")
     const username = document.getElementById("username")
     const status_message = document.getElementById("status_message")
     const profile_image = document.getElementById("profile_image")
+    const update_profile = document.getElementById("update_profile")
+    const profile_user_id = document.getElementById("user_id")
+    profile_user_id.value = user_id
 
-    const response = await fetch(`${backend_base_url}/${API_USERS}/profile_view/${payload_parse.user_id}`)
+    const response = await fetch(`${backend_base_url}/${API_USERS}/profile_view/${user_id}`)
     const response_json = await response.json()
+
+    if (response_json.email != payload_parse.email) {
+        update_profile.style.display = "none"
+    }
+
     //  프로필 이미지 불러오기
     if (response_json.image != null) {
         profile_image.setAttribute("src", `${backend_base_url}${response_json.image}`)
@@ -76,20 +80,18 @@ window.onload = async () => {
         owner_follow.innerText = (response_json.followers.includes(payload_parse.email)) ? 'Unfollow' : "Follow"
     }
 
-    // 로드되면 내 게시글 가져오기
-    const urlParams = new URLSearchParams(window.location.search);
-    articleId = urlParams.get('article_id');
-    loadArticles(articleId)
+
 }
+
+
 
 async function followAPI() {
     const owner_follow = document.getElementById("owner_follow")
-    const payload = localStorage.getItem("payload");
-    const payload_parse = JSON.parse(payload)
+    user_id = document.getElementById("user_id")
 
     try {
         let access_token = localStorage.getItem("access")
-        const response = await fetch(`${backend_base_url}/${API_USERS}/profile_view/${payload_parse.user_id}/`, {
+        const response = await fetch(`${backend_base_url}/${API_USERS}/profile_view/${user_id.value}/`, {
             headers: {
                 'content-type': 'application/json',
                 "Authorization": `Bearer ${access_token}`
@@ -99,8 +101,10 @@ async function followAPI() {
         const response_json = await response.json()
         if (response.status == 200) {
             owner_follow.innerText = response_json == "unfollow" ? 'Unfollow' : "Follow"
+            location.reload();
         } else if (response.status == 400) {
             alert(`나 자신을 팔로우 할 수 없습니다.`)
+            console.log(response_json)
         } else if (response.status == 401) {
             alert(`로그인이 필요합니다.`)
             // window.location.replace(`${frontend_base_url}/html/login.html`)
@@ -111,12 +115,11 @@ async function followAPI() {
     }
 }
 
-
-// 이하 프로필 쪽 게시글 모아보기 기능 구현
-
-// 게시글 수정페이지로 이동
-function updateMode(articleId) {
-    window.location.href = `post_update.html?article_id=${articleId}`
+async function handleLogout() {
+    localStorage.removeItem("access")
+    localStorage.removeItem("refresh")
+    localStorage.removeItem("payload")
+    location.reload();
 }
 
 // 게시글 삭제하기
@@ -128,17 +131,17 @@ async function removeArticle(articleId) {
 
 // 게시글 삭제 api
 async function deleteArticle(articleId) {
-    
+
     let token = localStorage.getItem("access")
 
     const response = await fetch(`${backend_base_url}/api/posts/${articleId}`,
-    {
-        method: 'DELETE',
-        headers: {
-            "Authorization" : `Bearer ${token}`
-        },
-    })
-    if (response.status == 204) {   
+        {
+            method: 'DELETE',
+            headers: {
+                "Authorization": `Bearer ${token}`
+            },
+        })
+    if (response.status == 204) {
     } else {
         alert(response.status)
     }
@@ -160,7 +163,7 @@ async function loadArticles(articleId) {
     response.forEach((article, index) => {
 
         const image_url = article.image ? `${backend_base_url}${article.image}` : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbB5kLi%2Fbtse96eg3uA%2FvJleU9SMKYxEXTqEDzioBK%2Fimg.jpg";
-        
+
         articleList.innerHTML += `
         <tr>
             <td style="color: white;">${index + 1}</td>
@@ -179,7 +182,7 @@ async function getArticles() {
     const payload = localStorage.getItem("payload");
     const payload_parse = JSON.parse(payload)
     const userId = payload_parse.user_id
-    console.log(userId)
+
 
     const response = await fetch(`${backend_base_url}/api/posts/${userId}/mypost/`, {
         // headers: {
@@ -190,10 +193,10 @@ async function getArticles() {
         method: 'GET' // 디폴트 get이라서 없어도 ok
     })
 
-    console.log(response)
+
     if (response.status == 200) {
         const response_json = await response.json()
-        console.log(response_json)
+
         return response_json
     } else {
         alert("게시글 가져오기 실패")
